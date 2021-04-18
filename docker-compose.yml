@@ -1,9 +1,14 @@
 version: "3.8"
+volumes:
+    db-store:
+    vendor-store:
+    node_modules-store:
 services:
     app:
         build: ./infra/php
         volumes:
             - ./backend:/work
+            - vendor-store:/work/vendor # パフォーマンスアップ
     
     web:
         image: nginx:1.18-alpine
@@ -18,6 +23,3 @@ services:
         build: ./infra/mysql
         volumes:
             - db-store:/var/lib/mysql
-
-volumes:
-    db-store:
