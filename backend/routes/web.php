@@ -50,4 +50,5 @@ Route::get('/item', 'App\Http\Controllers\ItemController@index');
 
 /* ===== Todolist ===== */
 Route::get('/todolist', 'App\Http\Controllers\TodolistController@index');
-Route::resource('todolist', 'App\Http\Controllers\TodolistController');
+Route::resource('todolist', 'App\Http\Controllers\TodolistController',
+    ['only' => ['index', 'store', 'edit', 'update', 'destroy']]);

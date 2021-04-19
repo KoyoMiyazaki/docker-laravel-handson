@@ -9,13 +9,19 @@
     <script src="{{ asset('js/app.js') }}"></script>
 </head>
 <body>
+    @if (session('message'))
+    <div class="alert alert-success">
+        {{ session('message') }}
+    </div>
+    @endif
     <div class="container mt-3">
         <h1>ToDoリスト</h1>
         <h2 class="mt-5">一覧へ追加</h2>
-        <form action="" method="post">
+        <form action="{{ route('todolist.store') }}" method="post">
+            @csrf
             <div class="form-group">
                 <label for="content">リストへ追加する内容を入力</label>
-                <textarea class="form-control" id="content" rows="2"></textarea>
+                <textarea name="content" class="form-control" id="content" rows="2"></textarea>
             </div>
             <button type="submit" class="btn btn-outline-info">追加</button>
         </form>
@@ -27,19 +33,23 @@
                     <tr>
                         <td>{{$todolist->content}}</td>
                         <td style="width:100px;">
-                            <form action="" method="post">
-                                <button type="button" class="btn btn-primary">編集</button>
+                            <form action="{{ route('todolist.edit', $todolist->id) }}" method="get">
+                                @csrf
+                                <button type="submit" class="btn btn-primary">編集</button>
                             </form>
                         </td>
                         <td style="width:100px;">
-                            <form action="" method="post">
-                                <button type="button" class="btn btn-danger">削除</button>
+                            <form action="{{ route('todolist.destroy', $todolist->id) }}" method="post">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="btn btn-danger">削除</button>
                             </form>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
+        {{ $todolists->links() }}
     </div>
 </body>
 </html>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Todolist;
 
 class TodolistController extends Controller
@@ -15,7 +16,8 @@ class TodolistController extends Controller
     public function index()
     {
         //
-        $todolists = Todolist::all();
+        // $todolists = Todolist::all();
+        $todolists = DB::table('todolists')->paginate(5);
 
         return view('todolists.index')->with('todolists', $todolists);
     }
@@ -38,7 +40,11 @@ class TodolistController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $todolist = new Todolist();
+        $todolist->content = $request->content;
+        $todolist->save();
+
+        return redirect('/todolist')->with('message', '追加しました');
     }
 
     /**
@@ -61,6 +67,9 @@ class TodolistController extends Controller
     public function edit($id)
     {
         //
+        $todolist = Todolist::find($id);
+
+        return view('todolists.edit')->with('todolist', $todolist);
     }
 
     /**
@@ -73,6 +82,11 @@ class TodolistController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $todolist = Todolist::find($id);
+        $todolist->content = $request->content;
+        $todolist->save();
+
+        return redirect('/todolist')->with('message', '更新しました');
     }
 
     /**
@@ -84,5 +98,9 @@ class TodolistController extends Controller
     public function destroy($id)
     {
         //
+        $todolist = Todolist::find($id);
+        $todolist->delete();
+
+        return redirect('/todolist')->with('message', '削除しました');
     }
 }
