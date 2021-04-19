@@ -119,6 +119,15 @@
                             <a href="https://github.com/sponsors/taylorotwell" class="ml-1 underline">
                                 Sponsor
                             </a>
+                            <!-- 追加 -->
+                            <a href="/phpinfo" class="ml-1 underline" style="margin-left: 20px;">
+                                PHP Info
+                            </a>
+
+                            <a href="/test" class="ml-1 underline" style="margin-left: 20px;">
+                                Test Page
+                            </a>
+                            <!-- 追加ここまで -->
                         </div>
                     </div>
 

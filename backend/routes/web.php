@@ -17,6 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/phpinfo', function() {
+    phpinfo();
+});
+
+Route::get('/test', function() {
+    return view('test');
+});
+
 Route::get('/todo', 'App\Http\Controllers\TodoController@index');
 Route::post('/todo', 'App\Http\Controllers\TodoController@create');
 Route::post('/todo/update', 'App\Http\Controllers\TodoController@update');
@@ -36,3 +44,10 @@ Route::post('/article/edit/{id}', 'App\Http\Controllers\PostController@update');
 
 Route::get('/article/destroy/{id}', 'App\Http\Controllers\GetController@destroy');
 Route::post('/article/destroy/{id}', 'App\Http\Controllers\PostController@delete');
+
+/* ===== item ===== */
+Route::get('/item', 'App\Http\Controllers\ItemController@index');
+
+/* ===== Todolist ===== */
+Route::get('/todolist', 'App\Http\Controllers\TodolistController@index');
+Route::resource('todolist', 'App\Http\Controllers\TodolistController');
