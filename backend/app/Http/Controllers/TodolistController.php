@@ -17,7 +17,7 @@ class TodolistController extends Controller
     {
         //
         // $todolists = Todolist::all();
-        $todolists = DB::table('todolists')->paginate(5);
+        $todolists = DB::table('todolists')->orderBy('updated_at', 'desc')->paginate(5);
 
         return view('todolists.index')->with('todolists', $todolists);
     }
