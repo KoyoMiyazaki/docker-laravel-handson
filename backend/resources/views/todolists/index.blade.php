@@ -21,7 +21,7 @@
             @csrf
             <div class="form-group">
                 <label for="content">リストへ追加する内容を入力</label>
-                <textarea name="content" class="form-control" id="content" rows="2"></textarea>
+                <textarea name="content" class="form-control" id="content" rows="2" required></textarea>
             </div>
             <button type="submit" class="btn btn-outline-info">追加</button>
         </form>
