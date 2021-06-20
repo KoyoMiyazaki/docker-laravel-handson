@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    return view('layouts/app');
+});
+
+Route::get('/welcome', function () {
     return view('welcome');
 });
 
@@ -52,3 +56,12 @@ Route::get('/item', 'App\Http\Controllers\ItemController@index');
 Route::get('/todolist', 'App\Http\Controllers\TodolistController@index');
 Route::resource('todolist', 'App\Http\Controllers\TodolistController',
     ['only' => ['index', 'store', 'edit', 'update', 'destroy']]);
+Auth::routes();
+
+/* ===== FCC ===== */
+Route::get('/fcc', function () {
+    return view('fcc/test');
+});
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
