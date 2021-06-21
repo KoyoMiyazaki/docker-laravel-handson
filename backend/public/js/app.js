@@ -1931,7 +1931,7 @@ function Example() {
           className: "card",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
             className: "card-header",
-            children: "Example Component"
+            children: "Laravel and React Test!!!"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
             className: "card-body",
             children: "I'm an example component!"

@@ -58,10 +58,5 @@ Route::resource('todolist', 'App\Http\Controllers\TodolistController',
     ['only' => ['index', 'store', 'edit', 'update', 'destroy']]);
 Auth::routes();
 
-/* ===== FCC ===== */
-Route::get('/fcc', function () {
-    return view('fcc/test');
-});
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

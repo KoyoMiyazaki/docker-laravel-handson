@@ -18,4 +18,6 @@ RUN apt-get install -y nodejs
 
 COPY ./php.ini /usr/local/etc/php/php.ini
 
+EXPOSE 8000
+
 WORKDIR /work
