@@ -17,6 +17,7 @@ services:
         volumes:
             - ./backend:/work
             - ./infra/nginx/default.conf:/etc/nginx/conf.d/default.conf
+            - node_modules-store:/work/backend/node_modules
         working_dir: /work
 
     db:
