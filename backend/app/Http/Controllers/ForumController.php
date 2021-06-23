@@ -41,6 +41,8 @@ class ForumController extends Controller
         $forum->content = $request->content;
         $forum->save();
 
+        // var_dump($request->id);
+
         return redirect('/forum');
     }
 

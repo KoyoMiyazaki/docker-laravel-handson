@@ -26,7 +26,8 @@
             <tbody>
                 @foreach($forums as $forum)
                     <tr>
-                        <td><pre>{{$forum->content}}</pre></td>
+                        <td>{{$forum->id}}</td>
+                        <td>{!! nl2br(e($forum->content)) !!}</td>
                     </tr>
                 @endforeach
             </tbody>

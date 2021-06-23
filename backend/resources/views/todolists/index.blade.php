@@ -31,7 +31,7 @@
             <tbody>
                 @foreach($todolists as $todolist)
                     <tr>
-                        <td>{{$todolist->content}}</td>
+                        <td>{!! nl2br(e($todolist->content)) !!}</td>
                         <td style="width:100px;">
                             <form action="{{ route('todolist.edit', $todolist->id) }}" method="get">
                                 @csrf
