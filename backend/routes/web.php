@@ -60,3 +60,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+/* ===== Forum ===== */
+Route::get('/forum', 'App\Http\Controllers\ForumController@index');
+Route::resource('forum', 'App\Http\Controllers\ForumController',
+    ['only' => ['index', 'store', 'edit', 'update', 'destroy']]);
