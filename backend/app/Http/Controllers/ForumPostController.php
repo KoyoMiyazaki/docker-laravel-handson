@@ -3,20 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Models\Forum;
 
-class ForumController extends Controller
+class ForumPostController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $forums = DB::table('forums')->orderBy('updated_at', 'desc')->paginate(5);
-        return view('forums.index')->with('forums', $forums);
+        return view('forums.posts.index')->with('id', $id);
     }
 
     /**
@@ -37,17 +34,7 @@ class ForumController extends Controller
      */
     public function store(Request $request)
     {
-        $forum = new Forum();
-        $forum->title = $request->title;
-        $forum->save(); 
-
-        // var_dump($request->id);
-
-        // return view('forums.posts.index', [
-        //     'id' => $forum->id
-        // ]);
-
-        return redirect()->route('forum.post.index', ['id' => $forum->id]);
+        //
     }
 
     /**

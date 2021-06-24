@@ -64,3 +64,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/forum', 'App\Http\Controllers\ForumController@index');
 Route::resource('forum', 'App\Http\Controllers\ForumController',
     ['only' => ['index', 'store', 'edit', 'update', 'destroy']]);
+
+/* ===== ForumPost ===== */
+Route::get('/forum/post/{id}', 'App\Http\Controllers\ForumPostController@index')->name('forum.post.index');
