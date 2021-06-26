@@ -14,7 +14,9 @@ class CreateForumPostsTable extends Migration
     public function up()
     {
         Schema::create('forum_posts', function (Blueprint $table) {
-            $table->id();
+            $table->smallIncrements('id');
+            $table->text('content');
+            $table->smallIncrements('forum_id');
             $table->timestamps();
         });
     }

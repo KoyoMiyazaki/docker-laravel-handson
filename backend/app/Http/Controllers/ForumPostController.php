@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Forum;
+use App\Models\ForumPost;
 
 class ForumPostController extends Controller
 {
@@ -13,7 +16,8 @@ class ForumPostController extends Controller
      */
     public function index($id)
     {
-        return view('forums.posts.index')->with('id', $id);
+        $forum = Forum::find($id);
+        return view('forums.posts.index')->with('forum', $forum);
     }
 
     /**
@@ -34,7 +38,10 @@ class ForumPostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $forum_post = new ForumPost();
+        $forum_post->content = $request->content;
+        $forum_post->forum_id = $request->forum_id;
+        $forum_post->save(); 
     }
 
     /**

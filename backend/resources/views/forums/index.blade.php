@@ -9,6 +9,11 @@
     <script src="{{ asset('js/app.js') }}"></script>
 </head>
 <body>
+    @if (session('message'))
+    <div class="alert alert-success">
+        {{ session('message') }}
+    </div>
+    @endif
     <div class="container mt-3">
         <h1>掲示板アプリ</h1>
         <h2 class="mt-5">入力欄</h2>
@@ -25,13 +30,21 @@
         <table class="table table-striped" style="table-layout:fixed;">
             <tbody>
                 <tr>
-                    <th>タイトル</th>
-                    <th>更新日</th>
+                    <th style="width: 65%">タイトル</th>
+                    <th style="width: 25%">更新日</th>
+                    <th style="width: 10%"></th>
                 </tr>
                 @foreach($forums as $forum)
                 <tr>
                     <td>{!! nl2br(e($forum->title)) !!}</td>
                     <td>{{$forum->updated_at}}</td>
+                    <td>
+                        <form action="{{ route('forum.destroy', $forum->id) }}" method="post">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-danger">削除</button>
+                        </form>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

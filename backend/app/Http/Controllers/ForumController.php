@@ -92,6 +92,9 @@ class ForumController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $forum = Forum::find($id);
+        $forum->delete();
+
+        return redirect('/forum')->with('message', '削除しました');
     }
 }

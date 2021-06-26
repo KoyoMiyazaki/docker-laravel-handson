@@ -11,7 +11,9 @@
 <body>
     <div class="container mt-3">
         <h1>掲示板アプリ</h1>
-        <p>{{$id}}</p>
+        <h2 class="mt-5">入力欄</h2>
+        <p>id：{{$forum->id}}</p>
+        <p>title：{{$forum->title}}</p>
     </div>
 </body>
 </html>
