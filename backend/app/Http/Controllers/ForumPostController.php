@@ -17,7 +17,7 @@ class ForumPostController extends Controller
     public function index($id)
     {
         $forum = Forum::find($id);
-        $posts = DB::table('forum_posts')->where('forum_id', $id)->get();
+        $posts = DB::table('forum_posts')->where('forum_id', $id)->orderBy('updated_at', 'desc')->get();
         return view('forums.posts.index')->with([
             'forum' => $forum,
             'posts' => $posts,
@@ -82,7 +82,7 @@ class ForumPostController extends Controller
         $forum_post->save();
 
         $forum = Forum::find($id);
-        $posts = DB::table('forum_posts')->where('forum_id', $id)->get();
+        $posts = DB::table('forum_posts')->where('forum_id', $id)->orderBy('updated_at', 'desc')->get();
         return view('forums.posts.index')->with([
             'forum' => $forum,
             'posts' => $posts,
@@ -97,6 +97,18 @@ class ForumPostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = ForumPost::find($id);
+        $forum_id = $post->forum_id;
+        $post->delete();
+
+        // $forum = Forum::find($forum_id);
+        // $posts = DB::table('forum_posts')->where('forum_id', $forum_id)->orderBy('updated_at', 'desc')->get();
+
+        // return redirect()->route('forum.post.index', ['id' => $forum->id])->with([
+        //     'forum' => $forum,
+        //     'posts' => $posts,
+        // ]);
+
+        return redirect()->route('forum.post.index', ['id' => $forum_id]);
     }
 }

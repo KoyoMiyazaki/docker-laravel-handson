@@ -68,4 +68,5 @@ Route::resource('forum', 'App\Http\Controllers\ForumController',
 /* ===== ForumPost ===== */
 Route::get('/forum/post/{id}', 'App\Http\Controllers\ForumPostController@index')->name('forum.post.index');
 Route::post('/forum/post/{id}', 'App\Http\Controllers\ForumPostController@update')->name('forum.post.update');
+Route::delete('/forum/post/{id}', 'App\Http\Controllers\ForumPostController@destroy')->name('forum.post.destroy');
 // Route::resource('forum/post', 'App\Http\Controllers\ForumPostController');
