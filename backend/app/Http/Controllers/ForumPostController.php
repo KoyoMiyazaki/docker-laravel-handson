@@ -17,7 +17,11 @@ class ForumPostController extends Controller
     public function index($id)
     {
         $forum = Forum::find($id);
-        return view('forums.posts.index')->with('forum', $forum);
+        $posts = DB::table('forum_posts')->where('forum_id', $id)->get();
+        return view('forums.posts.index')->with([
+            'forum' => $forum,
+            'posts' => $posts,
+        ]);
     }
 
     /**
@@ -38,10 +42,7 @@ class ForumPostController extends Controller
      */
     public function store(Request $request)
     {
-        $forum_post = new ForumPost();
-        $forum_post->content = $request->content;
-        $forum_post->forum_id = $request->forum_id;
-        $forum_post->save(); 
+        //
     }
 
     /**
@@ -75,7 +76,17 @@ class ForumPostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $forum_post = new ForumPost();
+        $forum_post->content = $request->content;
+        $forum_post->forum_id = $id;
+        $forum_post->save();
+
+        $forum = Forum::find($id);
+        $posts = DB::table('forum_posts')->where('forum_id', $id)->get();
+        return view('forums.posts.index')->with([
+            'forum' => $forum,
+            'posts' => $posts,
+        ]);
     }
 
     /**
