@@ -23,7 +23,6 @@
             @csrf
             <div class="form-group">
                 <input type="text" name="title" class="form-control" id="title" placeholder="タイトルを入力">
-                <!-- <textarea name="title" class="form-control" id="title" rows="1" required></textarea> -->
             </div>
             <button type="submit" class="btn btn-outline-info">掲示板を作成</button>
         </form>
@@ -40,7 +39,7 @@
             <tbody>
                 @foreach($forums as $forum)
                 <tr>
-                    <td>
+                    <td class="forum-title">
                         <a href="{{ route('forum.post.index', $forum->id) }}">{!! nl2br(e($forum->title)) !!}</a>
                     </td>
                     <td>{{$forum->updated_at}}</td>
@@ -57,5 +56,6 @@
         </table>
         {{ $forums->links() }}
     </div>
+    <script src="{{ asset('js/sample.js') }}"></script>
 </body>
 </html>

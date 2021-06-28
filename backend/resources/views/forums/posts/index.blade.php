@@ -7,6 +7,7 @@
     <title>掲示板アプリ | {{$forum->title}}</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="{{ asset('js/app.js') }}"></script>
+    <!-- <script src="{{ asset('js/sample.js') }}"></script> -->
 </head>
 <body>
     <div class="container mt-3">
@@ -34,7 +35,10 @@
             <tbody>
                 @foreach($posts as $post)
                 <tr>
-                    <td>{!! nl2br(e($post->content)) !!}</td>
+                    <td>
+                        <p>{{$post->created_at}}</p>
+                        <p>{!! nl2br(e($post->content)) !!}</p>
+                    </td>
                     <td>
                         <form action="{{ route('forum.post.destroy', $post->id) }}" method="post">
                             @csrf
