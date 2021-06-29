@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+
 use App\Models\Forum;
 use App\Models\ForumPost;
 
@@ -82,6 +84,9 @@ class ForumPostController extends Controller
         $forum_post->save();
 
         $forum = Forum::find($id);
+        $forum->updated_at = Carbon::now();
+        $forum->save();
+
         $posts = DB::table('forum_posts')->where('forum_id', $id)->get();
         return view('forums.posts.index')->with([
             'forum' => $forum,

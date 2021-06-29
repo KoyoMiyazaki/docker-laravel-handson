@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Forum;
+use App\Models\ForumPost;
 
 class ForumController extends Controller
 {
@@ -16,7 +17,18 @@ class ForumController extends Controller
     public function index()
     {
         $forums = DB::table('forums')->orderBy('updated_at', 'desc')->paginate(5);
-        return view('forums.index')->with('forums', $forums);
+        $ids = DB::table('forums')->pluck('id')->toArray();
+
+        $numOfPosts = [];
+        foreach($ids as $id) {
+            $count = DB::table('forum_posts')->where('forum_id', $id)->count();
+            $numOfPosts[$id] = $count;
+        }
+
+        return view('forums.index')->with([
+            'forums' => $forums,
+            'numOfPosts' => $numOfPosts,
+        ]);
     }
 
     /**
