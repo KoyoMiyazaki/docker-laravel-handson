@@ -36,7 +36,10 @@
                 @foreach($posts as $post)
                 <tr>
                     <td>
-                        <p>{{$post->created_at}}</p>
+                        <div class="d-flex justify-content-between mb-2">
+                            <p>{{$loop->index + 1}}</p>
+                            <p>投稿日時: {{$post->created_at}}</p>
+                        </div>
                         <p>{!! nl2br(e($post->content)) !!}</p>
                     </td>
                     <td>
