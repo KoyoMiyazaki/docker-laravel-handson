@@ -10,6 +10,10 @@
     <!-- <script src="{{ asset('js/sample.js') }}"></script> -->
 </head>
 <body>
+    @isset($message)
+    <div class="alert alert-success">{{$message}}</div>
+    @endisset
+    
     <div class="container mt-3">
         <h1>
             <a href="{{ route('forum.index') }}">掲示板アプリ</a>

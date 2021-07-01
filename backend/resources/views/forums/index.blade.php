@@ -15,9 +15,19 @@
     </div>
     @endif
     <div class="container mt-3">
-        <h1>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <h1><a href="{{ route('forum.index') }}">掲示板アプリ</a></h1>
+            <form action="{{ route('forum.search.search') }}" method="post" class="d-flex">
+                @csrf
+                <div class="form-group align-middle mb-0">
+                    <input type="text" name="word" class="form-control" id="word" placeholder="検索するワードを入力">
+                </div>
+                <button type="submit" class="btn btn-outline-info">検索</button>
+            </form>
+        </div>
+        <!-- <h1>
             <a href="{{ route('forum.index') }}">掲示板アプリ</a>
-        </h1>
+        </h1> -->
         <h2 class="mt-5">新規掲示板作成</h2>
         <form action="{{ route('forum.store') }}" method="post">
             @csrf

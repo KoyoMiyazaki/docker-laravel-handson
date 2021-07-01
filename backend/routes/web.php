@@ -70,3 +70,7 @@ Route::get('/forum/post/{id}', 'App\Http\Controllers\ForumPostController@index')
 Route::post('/forum/post/{id}', 'App\Http\Controllers\ForumPostController@update')->name('forum.post.update');
 Route::delete('/forum/post/{id}', 'App\Http\Controllers\ForumPostController@destroy')->name('forum.post.destroy');
 // Route::resource('forum/post', 'App\Http\Controllers\ForumPostController');
+
+/* ===== ForumPost ===== */
+Route::get('/forum/search/{word}', 'App\Http\Controllers\ForumSearchController@show')->name('forum.search.show');
+Route::post('/forum/search/{word}', 'App\Http\Controllers\ForumSearchController@search')->name('forum.search.search');;
