@@ -72,5 +72,4 @@ Route::delete('/forum/post/{id}', 'App\Http\Controllers\ForumPostController@dest
 // Route::resource('forum/post', 'App\Http\Controllers\ForumPostController');
 
 /* ===== ForumPost ===== */
-Route::get('/forum/search/{word}', 'App\Http\Controllers\ForumSearchController@show')->name('forum.search.show');
-Route::post('/forum/search/{word}', 'App\Http\Controllers\ForumSearchController@search')->name('forum.search.search');;
+Route::get('/forum/search', 'App\Http\Controllers\ForumSearchController@show')->name('forum.search.show');

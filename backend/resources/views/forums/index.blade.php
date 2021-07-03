@@ -17,8 +17,11 @@
     <div class="container mt-3">
         <div class="d-flex justify-content-between align-items-center mb-2">
             <h1><a href="{{ route('forum.index') }}">掲示板アプリ</a></h1>
-            <form action="{{ route('forum.search.search') }}" method="post" class="d-flex">
-                @csrf
+            <form action="{{ route('forum.search.show') }}" method="get" class="d-flex">
+                <select class="form-select" name="searchBy">
+                    <option value="title" selected>タイトル</option>
+                    <option value="content">内容</option>
+                </select>
                 <div class="form-group align-middle mb-0">
                     <input type="text" name="word" class="form-control" id="word" placeholder="検索するワードを入力">
                 </div>
