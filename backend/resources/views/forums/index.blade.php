@@ -7,6 +7,7 @@
     <title>掲示板アプリ | トップ</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/event.js') }}"></script>
 </head>
 <body>
     @if (session('message'))
@@ -28,16 +29,13 @@
                 <button type="submit" class="btn btn-outline-info">検索</button>
             </form>
         </div>
-        <!-- <h1>
-            <a href="{{ route('forum.index') }}">掲示板アプリ</a>
-        </h1> -->
         <h2 class="mt-5">新規掲示板作成</h2>
         <form action="{{ route('forum.store') }}" method="post">
             @csrf
             <div class="form-group">
-                <input type="text" name="title" class="form-control" id="title" placeholder="タイトルを入力">
+                <input type="text" name="title" class="form-control" id="title" placeholder="タイトルを入力" required>
             </div>
-            <button type="submit" class="btn btn-outline-info">掲示板を作成</button>
+            <button type="submit" id="create-button" class="btn btn-outline-info">掲示板を作成</button>
         </form>
 
         <h2 class="mt-5">掲示板一覧</h2>
@@ -69,6 +67,6 @@
         </table>
         {{ $forums->links() }}
     </div>
-    <script src="{{ asset('js/sample.js') }}"></script>
+    <!-- <script src="{{ asset('js/sample.js') }}"></script> -->
 </body>
 </html>
