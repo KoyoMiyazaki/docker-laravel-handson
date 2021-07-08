@@ -81,7 +81,9 @@ class ForumController extends Controller
      */
     public function edit($id)
     {
-        //
+        $forum = Forum::find($id);
+
+        return view('forums.edit')->with('forum', $forum);
     }
 
     /**
@@ -93,7 +95,11 @@ class ForumController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $forum = Forum::find($id);
+        $forum->title = $request->title;
+        $forum->save();
+
+        return redirect('/forum')->with('message', '更新しました');
     }
 
     /**

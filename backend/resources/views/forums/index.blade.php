@@ -42,8 +42,9 @@
         <table class="table table-striped" style="table-layout:fixed;">
             <thead>
                 <tr>
-                    <th style="width: 65%">タイトル</th>
-                    <th style="width: 25%">更新日</th>
+                    <th style="width: 60%">タイトル</th>
+                    <th style="width: 20%">更新日</th>
+                    <th style="width: 10%"></th>
                     <th style="width: 10%"></th>
                 </tr>
             </thead>
@@ -54,6 +55,12 @@
                         <a href="{{ route('forum.post.index', $forum->id) }}">{!! nl2br(e($forum->title)) !!} ({{$numOfPosts[$forum->id]}})</a>
                     </td>
                     <td>{{$forum->updated_at}}</td>
+                    <td>
+                        <form action="{{ route('forum.edit', $forum->id) }}" method="get">
+                            @csrf
+                            <button type="submit" class="btn btn-primary">編集</button>
+                        </form>
+                    </td>
                     <td>
                         <form action="{{ route('forum.destroy', $forum->id) }}" method="post">
                             @csrf
