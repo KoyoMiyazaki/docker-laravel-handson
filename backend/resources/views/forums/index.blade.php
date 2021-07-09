@@ -74,6 +74,5 @@
         </table>
         {{ $forums->links() }}
     </div>
-    <!-- <script src="{{ asset('js/sample.js') }}"></script> -->
 </body>
 </html>

@@ -20,9 +20,8 @@
             <div class="form-group">
                 <input type="text" name="title" class="form-control" id="title" value="{{$forum->title}}" required>
             </div>
-            <button type="submit" id="create-button" class="btn btn-outline-info">タイトルを変更</button>
+            <button type="submit" id="update-button" class="btn btn-outline-info">タイトルを変更</button>
         </form>
-
     </div>
 </body>
 </html>

@@ -30,17 +30,6 @@ class ForumController extends Controller
             'numOfPosts' => $numOfPosts,
         ]);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -53,24 +42,7 @@ class ForumController extends Controller
         $forum->title = $request->title;
         $forum->save(); 
 
-        // var_dump($request->id);
-
-        // return view('forums.posts.index', [
-        //     'id' => $forum->id
-        // ]);
-
         return redirect()->route('forum.post.index', ['id' => $forum->id]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
