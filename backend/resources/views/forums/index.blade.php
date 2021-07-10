@@ -52,9 +52,9 @@
                 @foreach($forums as $forum)
                 <tr>
                     <td class="forum-title">
-                        <a href="{{ route('forum.post.index', $forum->id) }}">{!! nl2br(e($forum->title)) !!} ({{$numOfPosts[$forum->id]}})</a>
+                        <a href="{{ route('forum.post.index', $forum->id) }}">{!! nl2br(e($forum->title)) !!} ({{ $numOfPosts[$forum->id] }})</a>
                     </td>
-                    <td>{{$forum->updated_at}}</td>
+                    <td>{{ $forum->updated_at }}</td>
                     <td>
                         <form action="{{ route('forum.edit', $forum->id) }}" method="get">
                             @csrf

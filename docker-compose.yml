@@ -8,7 +8,7 @@ services:
         build: ./infra/php
         volumes:
             - ./backend:/work
-            - vendor-store:/work/vendor # パフォーマンスアップ
+            - vendor-store:/work/vendor
     
     web:
         image: nginx:1.18-alpine

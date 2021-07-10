@@ -36,9 +36,9 @@
                 @foreach($results as $result)
                 <tr>
                     <td class="forum-title">
-                        <a href="{{ route('forum.post.index', $result->id) }}">{!! nl2br(e($result->title)) !!} ({{$numOfPosts[$result->id]}})</a>
+                        <a href="{{ route('forum.post.index', $result->id) }}">{!! nl2br(e($result->title)) !!} ({{ $numOfPosts[$result->id] }})</a>
                     </td>
-                    <td>{{$result->updated_at}}</td>
+                    <td>{{ $result->updated_at }}</td>
                 </tr>
                 @endforeach
             </tbody>
@@ -57,7 +57,7 @@
                     <td class="forum-title">
                         <a href="{{ route('forum.post.index', $result->forum_id) }}">{!! nl2br(e($titles[$result->forum_id])) !!}</a>
                     </td>
-                    <td>{{$result->content}}</td>
+                    <td>{{ $result->content }}</td>
                 </tr>
                 @endforeach
             </tbody>
