@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\Forum;
+use App\Models\ForumPost;
 use DateTime;
 
 class ForumSeeder extends Seeder
@@ -15,38 +17,21 @@ class ForumSeeder extends Seeder
      */
     public function run()
     {
-        $forumTitles = [
-            'Test1',
-            'Test2',
-            'てすと１',
-            'てすと２',
-        ];
+        $numOfForums = 10;
+        Forum::factory()->count($numOfForums)->create();
 
-        foreach($forumTitles as $forumTitle)
-        {
-            DB::table('forums')->insert([
-                'title' => $forumTitle,
-                'created_at' => new DateTime(),
-                'updated_at' => new DateTime(),
-            ]);
-        }
+        $numOfPosts = 100;
+        ForumPost::factory()->count($numOfPosts)->create();
 
-        $posts = [
-            'Hello world!',
-            'Test Posts',
-            'こんにちは',
-            'てすとです。',
-        ];
-
-        for($i = 1, $iSize = count($forumTitles); $i <= $iSize; $i++)
-        {
-            for($j = 0, $jSize = count($posts); $j < $jSize; $j++)
-            DB::table('forum_posts')->insert([
-                'content' => $posts[$j],
-                'forum_id' => $i,
-                'created_at' => new DateTime(),
-                'updated_at' => new DateTime(),
-            ]);
-        }
+        // for($i = 1, $iSize = count($forumTitles); $i <= $iSize; $i++)
+        // {
+        //     for($j = 0, $jSize = count($posts); $j < $jSize; $j++)
+        //     DB::table('forum_posts')->insert([
+        //         'content' => $posts[$j],
+        //         'forum_id' => $i,
+        //         'created_at' => new DateTime(),
+        //         'updated_at' => new DateTime(),
+        //     ]);
+        // }
     }
 }
