@@ -22,16 +22,5 @@ class ForumSeeder extends Seeder
 
         $numOfPosts = 100;
         ForumPost::factory()->count($numOfPosts)->create();
-
-        // for($i = 1, $iSize = count($forumTitles); $i <= $iSize; $i++)
-        // {
-        //     for($j = 0, $jSize = count($posts); $j < $jSize; $j++)
-        //     DB::table('forum_posts')->insert([
-        //         'content' => $posts[$j],
-        //         'forum_id' => $i,
-        //         'created_at' => new DateTime(),
-        //         'updated_at' => new DateTime(),
-        //     ]);
-        // }
     }
 }
