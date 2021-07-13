@@ -12,6 +12,7 @@ use App\Models\Forum;
 class ForumTest extends TestCase
 {
     use WithoutMiddleware;
+    use RefreshDatabase;
     /**
      * A basic feature test example.
      *
@@ -25,16 +26,11 @@ class ForumTest extends TestCase
 
     public function testForumPostTest()
     {
-
         $response = $this->withHeaders([
             'X-Header' => 'Value',
         ])->post('/forum', ['title' => 'Test']);
-        $response->assertRedirect('/forum/post/14');
+        $response->assertRedirect("/forum/post/1");
+
         
-        // $newPost = Forum::where('title', 'This is Test')->first();
-        // self::assertSame(
-        //     'This is Test', $newPost->title,
-        //     "Expected \"This is Test\" but {$newPost->title}."
-        // );
     }
 }
