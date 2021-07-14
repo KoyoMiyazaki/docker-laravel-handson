@@ -18,19 +18,34 @@ class ForumTest extends TestCase
      *
      * @return void
      */
-    public function testForumGetTest()
+    public function testForumIndexTest()
     {
         $response = $this->get('/forum');
         $response->assertStatus(200);
     }
 
-    public function testForumPostTest()
+    public function testForumStoreTest()
     {
-        $response = $this->withHeaders([
+        $request = $this->withHeaders([
             'X-Header' => 'Value',
-        ])->post('/forum', ['title' => 'Test']);
-        $response->assertRedirect("/forum/post/1");
+        ])->post('/forum', ['title' => 'Test1']);
+        $request->assertStatus(302);
+        $request->assertRedirect("/forum/post/1");
+    }
 
-        
+    public function testForumEditTest()
+    {
+        $request = $this->withHeaders([
+            'X-Header' => 'Value',
+        ])->post('/forum', ['title' => 'Test1']);
+
+        // $response = $this->get("/forum/1/edit");
+        $response = $this->get(route('forum.edit', 1));
+        dd($response);
+        // $response->dump();
+        // $response->assertOk();
+
+        // $response = $this->get('/forum');
+        // $response->assertStatus(200);
     }
 }

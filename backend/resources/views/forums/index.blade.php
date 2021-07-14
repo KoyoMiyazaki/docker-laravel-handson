@@ -57,7 +57,7 @@
                     <td>{{ $forum->updated_at }}</td>
                     <td>
                         <form action="{{ route('forum.edit', $forum->id) }}" method="get">
-                            @csrf
+                            <!-- @csrf -->
                             <button type="submit" class="btn btn-primary">編集</button>
                         </form>
                     </td>
