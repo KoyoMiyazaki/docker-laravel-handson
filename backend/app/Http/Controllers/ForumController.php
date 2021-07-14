@@ -56,6 +56,8 @@ class ForumController extends Controller
         $forum = Forum::find($id);
 
         return view('forums.edit')->with('forum', $forum);
+        // return view('forums.edit', compact('forum', $forum));
+        // return view('forums.edit', ['forum' => $forum]);
     }
 
     /**

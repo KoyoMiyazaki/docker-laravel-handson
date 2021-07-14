@@ -8,11 +8,12 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 use App\Models\Forum;
+use Illuminate\Support\Facades\DB;
 
 class ForumTest extends TestCase
 {
     use WithoutMiddleware;
-    use RefreshDatabase;
+    // use RefreshDatabase;
     /**
      * A basic feature test example.
      *
@@ -20,32 +21,44 @@ class ForumTest extends TestCase
      */
     public function testForumIndexTest()
     {
-        $response = $this->get('/forum');
-        $response->assertStatus(200);
+        $request = $this->get('/forum');
+        $request->assertStatus(200);
     }
 
     public function testForumStoreTest()
     {
+        $totalPosts = DB::table('forums')->count();
+        $nextPostId = $totalPosts + 1;
         $request = $this->withHeaders([
             'X-Header' => 'Value',
         ])->post('/forum', ['title' => 'Test1']);
         $request->assertStatus(302);
-        $request->assertRedirect("/forum/post/1");
+        $request->assertRedirect("/forum/post/${nextPostId}");
     }
 
     public function testForumEditTest()
     {
+        $request = $this->get(route('forum.edit', 1));
+        $request->assertOk();
+    }
+
+    public function testForumUpdateTest()
+    {
+        $lastPostId = DB::table('forums')->count();
+
         $request = $this->withHeaders([
             'X-Header' => 'Value',
-        ])->post('/forum', ['title' => 'Test1']);
+        ])->put(route('forum.update', $lastPostId), ['title' => 'UpdatedTitle']);
+        $request->assertStatus(302);
+        $request->assertRedirect("/forum");
+    }
 
-        // $response = $this->get("/forum/1/edit");
-        $response = $this->get(route('forum.edit', 1));
-        dd($response);
-        // $response->dump();
-        // $response->assertOk();
+    public function testForumDestroyTest()
+    {
+        $lastPostId = DB::table('forums')->count();
 
-        // $response = $this->get('/forum');
-        // $response->assertStatus(200);
+        $request = $this->delete(route('forum.destroy', $lastPostId));
+        $request->assertStatus(302);
+        $request->assertRedirect("/forum");
     }
 }
