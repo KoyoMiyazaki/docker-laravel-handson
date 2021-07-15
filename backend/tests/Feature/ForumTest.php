@@ -21,44 +21,50 @@ class ForumTest extends TestCase
      */
     public function testForumIndexTest()
     {
-        $request = $this->get('/forum');
-        $request->assertStatus(200);
+        $response = $this->get('/forum');
+        $response->assertStatus(200);
     }
 
     public function testForumStoreTest()
     {
         $totalPosts = DB::table('forums')->count();
         $nextPostId = $totalPosts + 1;
-        $request = $this->withHeaders([
+        $testTitle = 'Test1';
+
+        $response = $this->withHeaders([
             'X-Header' => 'Value',
-        ])->post('/forum', ['title' => 'Test1']);
-        $request->assertStatus(302);
-        $request->assertRedirect("/forum/post/${nextPostId}");
+        ])->post('/forum', ['title' => $testTitle]);
+        $response->assertStatus(302);
+        $response->assertLocation("/forum/post/${nextPostId}");
+        $response->assertRedirect("/forum/post/${nextPostId}");
+        $response->assertSee("タイトル: ${testTitle}");
     }
 
     public function testForumEditTest()
     {
-        $request = $this->get(route('forum.edit', 1));
-        $request->assertOk();
+        $response = $this->get(route('forum.edit', 1));
+        $response->assertOk();
     }
 
     public function testForumUpdateTest()
     {
         $lastPostId = DB::table('forums')->count();
 
-        $request = $this->withHeaders([
+        $response = $this->withHeaders([
             'X-Header' => 'Value',
         ])->put(route('forum.update', $lastPostId), ['title' => 'UpdatedTitle']);
-        $request->assertStatus(302);
-        $request->assertRedirect("/forum");
+        $response->assertStatus(302);
+        $response->assertLocation("/forum");
+        $response->assertRedirect("/forum");
     }
 
     public function testForumDestroyTest()
     {
         $lastPostId = DB::table('forums')->count();
 
-        $request = $this->delete(route('forum.destroy', $lastPostId));
-        $request->assertStatus(302);
-        $request->assertRedirect("/forum");
+        $response = $this->delete(route('forum.destroy', $lastPostId));
+        $response->assertStatus(302);
+        $response->assertLocation("/forum");
+        $response->assertRedirect("/forum");
     }
 }
